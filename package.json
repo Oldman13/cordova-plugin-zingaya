@@ -1,0 +1,35 @@
+{
+  "name": "zingaya_plugin",
+  "version": "1.0.0",
+  "description": "You can use the zingaya plugin to ...",
+  "cordova": {
+    "id": "cordova-plugin-zingaya",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Oldman13/cordova-plugin-zingaya"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "ecosystem:phonegap",
+    "cordova-ios",
+    "cordova-android",
+    "zingaya"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "Roman Startsev",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/Oldman13/cordova-plugin-zingaya/issues"
+  },
+  "homepage": "https://github.com/Oldman13/cordova-plugin-zingaya#readme"
+}
