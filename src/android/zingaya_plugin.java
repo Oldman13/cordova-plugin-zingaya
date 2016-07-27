@@ -161,7 +161,7 @@ public class zingaya_plugin extends CordovaPlugin implements ZingayaAPICallback 
                 logMessage("Connected to server. Calling...\n");
                 setState(State.Calling);
                 try {
-                    call = ZingayaAPI.instance().createCall("7c71b5d9d57ff0eb776f2ed7c6e50799", false);
+                    call = ZingayaAPI.instance().createCall("a775f92b4754224fa36df44123074253", false);
                     call.start(null);
                     call.attachMedia();
                 } catch (NotConnectedToServerException e) {

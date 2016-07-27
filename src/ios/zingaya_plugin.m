@@ -94,7 +94,7 @@
     NSLog(@"Connected to server");
     [self setState:Calling];
     
-    callId = [[NSString alloc] initWithString:[sdk createCall:@"7c71b5d9d57ff0eb776f2ed7c6e50799" withVideo:NO]] ;
+    callId = [[NSString alloc] initWithString:[sdk createCall:@"a775f92b4754224fa36df44123074253" withVideo:NO]] ;
     
     [sdk startCall:callId withHeaders:Nil];
     [sdk attachAudioTo:callId];
