@@ -1,4 +1,4 @@
-#import "ZingayaPlugin.h"
+#import "zingaya_plugin.h"
 
 #import "ZingayaSDKiOS.h"
 #import "ZingayaTypes.h"
