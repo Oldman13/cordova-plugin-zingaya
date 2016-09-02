@@ -140,9 +140,11 @@ public class Zingaya_Plugin extends CordovaPlugin implements ZingayaAPICallback 
      */
 
     private void initZingayaSDK() {
-        try {
+       try {
             ZingayaAPI.instance().setAndroidContext(getApplicationContext());
         } catch (MissingPermissionException e) {
+            e.printStackTrace();
+        } catch (AudioDeviceException e) {
             e.printStackTrace();
         }
         ZingayaAPI.instance().setCallback(this);
