@@ -21,10 +21,9 @@ import com.zingaya.zingaya.*;
 /**
  * This class echoes a string called from JavaScript.
  */
+public class Zingaya_Plugin extends CordovaPlugin implements ZingayaAPICallback {
 
-public class zingaya_plugin extends CordovaPlugin implements ZingayaAPICallback {
-
-    public static final String TAG = "zingaya_plugin";
+    public static final String TAG = "Zingaya_Plugin";
     private CallbackContext callbackContext;
     private String action;
     private JSONArray args;
@@ -51,7 +50,7 @@ public class zingaya_plugin extends CordovaPlugin implements ZingayaAPICallback 
     /**
      * Constructor.
      */
-    public zingaya_plugin() {
+    public Zingaya_Plugin() {
     }
 
     /**
@@ -289,15 +288,13 @@ public class zingaya_plugin extends CordovaPlugin implements ZingayaAPICallback 
     private void setOKResult(String message) {
         PluginResult result = new PluginResult(PluginResult.Status.OK, message);
         result.setKeepCallback(false);
-        zingaya_plugin.this.callbackContext.sendPluginResult(result);
-        //ZingayaPlugin.this.callbackContext.sendPluginResult(result);
+        Zingaya_Plugin.this.callbackContext.sendPluginResult(result);
     }
     
     private void setErrorResult(String message) {
         PluginResult result = new PluginResult(PluginResult.Status.ERROR, message);
         result.setKeepCallback(false);
-        zingaya_plugin.this.callbackContext.sendPluginResult(result);
-        //ZingayaPlugin.this.callbackContext.sendPluginResult(result);
+        Zingaya_Plugin.this.callbackContext.sendPluginResult(result);
     }
 
     private void logMessage(String message) {
