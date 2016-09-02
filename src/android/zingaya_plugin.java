@@ -1,4 +1,4 @@
-package cordova-plugin-zingaya;
+package cordova.plugin.zingaya;
 
 import android.app.Activity;
 import android.content.Context;
