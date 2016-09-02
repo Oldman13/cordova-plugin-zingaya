@@ -64,7 +64,7 @@
 		<source-file src="src/android/libs/armeabi-v7a" target-dir="libs" />
 		<source-file src="src/android/libs/x86" target-dir="libs" />
 
-		<source-file src="src/android/zingaya_plugin.java" target-dir="src/cordova-plugin-zingaya/zingaya_plugin" />
+		<source-file src="src/android/Zingaya_Plugin.java" target-dir="src/cordova-plugin-zingaya/zingaya_plugin" />
 	</platform>
 	
 </plugin>
