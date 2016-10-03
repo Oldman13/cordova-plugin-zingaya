@@ -1,14 +1,18 @@
-#import "zingaya_plugin.h"
+//
+//  ZingayaPlugin.m
+//
 
+#import "ZingayaPlugin.h"
 #import "ZingayaSDKiOS.h"
 #import "ZingayaTypes.h"
 
 @interface ZingayaPlugin () {
     
     __block CDVPluginResult *pluginResult;
-    __block ZingayaSDKiOS *sdk;
     
 }
+
+@property (strong, nonatomic) ZingayaSDKiOS *sdk;
 
 @end
 
@@ -18,9 +22,9 @@
 {
     self.currentCommand = command;
     
-    if (!sdk) {
-        sdk = [[ZingayaSDKiOS alloc] init];
-        [sdk setDelegate:self];
+    if (!self.sdk) {
+        self.sdk = [ZingayaSDKiOS new];
+        [self.sdk setDelegate:self];
         currentState = Idle;
         callId = NULL;
     }
@@ -30,7 +34,7 @@
         case Idle:
             [self setState:Connecting];
             NSLog(@"Connecting to server...");
-            [sdk connect];
+            [self.sdk connect];
             break;
         case Disconnecting:
             [self onConnectionSuccessful];
@@ -51,7 +55,7 @@
         case Calling:
         case Speaking:
             [self setState:Disconnecting];
-            [sdk disconnectCall:callId];
+            [self.sdk disconnectCall:callId];
             break;
         default:
             break;
@@ -60,8 +64,8 @@
 
 - (void) microphoneOn:(CDVInvokedUrlCommand*)command
 {
-    if (sdk) {
-        [sdk setMute:false];
+    if (self.sdk) {
+        [self.sdk setMute:false];
         [self setOKResult:@""];
     } else {
         [self setErrorResult:@"Error initialization sdk"];
@@ -70,8 +74,8 @@
 
 - (void) microphoneOff:(CDVInvokedUrlCommand*)command
 {
-    if (sdk) {
-        [sdk setMute:true];
+    if (self.sdk) {
+        [self.sdk setMute:true];
         [self setOKResult:@""];
     } else {
         [self setErrorResult:@"Error initialization sdk"];
@@ -91,13 +95,14 @@
 
 - (void) onConnectionSuccessful
 {
+    
     NSLog(@"Connected to server");
     [self setState:Calling];
     
-    callId = [[NSString alloc] initWithString:[sdk createCall:@"a775f92b4754224fa36df44123074253" withVideo:NO]] ;
+    callId = [[NSString alloc] initWithString:[self.sdk createCall:@"a775f92b4754224fa36df44123074253" withVideo:NO]] ;
     
-    [sdk startCall:callId withHeaders:Nil];
-    [sdk attachAudioTo:callId];
+    [self.sdk startCall:callId withHeaders:Nil];
+    [self.sdk attachAudioTo:callId];
 }
 
 - (void) onConnectionClosed
@@ -124,7 +129,7 @@
 {
     NSLog(@"Call ended");
     [self setState:Disconnecting];
-    //[sdk closeConnection];
+    //[self.sdk closeConnection];
     callId = NULL;
     [self setOKResult:@"Call disconnected."];
 }
@@ -138,9 +143,9 @@
 {
     NSLog(@"Call failed: %@", reason);
     [self setState:Disconnecting];
-    [sdk closeConnection];
+    [self.sdk closeConnection];
     callId = NULL;
-    sdk = NULL;
+    self.sdk = NULL;
     [self setErrorResult:[NSString stringWithFormat:@"Call failed: %d %@", code, reason]];
 }
 

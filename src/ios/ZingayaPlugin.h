@@ -1,7 +1,7 @@
+//
+//  ZingayaPlugin.h
+//
 
-#import <UIKit/UIKit.h>
-
-#import "ZingayaSDKProtocol.h"
 
 #import <Cordova/CDVPlugin.h>
 

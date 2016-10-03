@@ -1,32 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-zingaya" version="0.0.1">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:rim="http://www.blackberry.com/ns/widgets"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="plugins.zingaya"
+    version="1.0.0">
+    <name>ZingayaPlugin</name>
+    <description>Zingaya Plugin</description>
 
-	<name>zingaya_plugin</name>
-	<description>You can use the zingaya plugin to ...</description>
-    <license>Apache 2.0</license>
-
-    <repo>https://github.com/Oldman13/cordova-plugin-zingaya</repo>
-    <issue>https://github.com/Oldman13/cordova-plugin-zingaya/issues</issue>
-
-    <engines>
-        <engine name="cordova" version=">=3.0.0" />
-    </engines>
-
-	<js-module name="zingaya_plugin" src="www/zingaya_plugin.js">
-		<clobbers target="cordova.plugins.zingaya_plugin" />
-	</js-module>
-
+    <js-module src="www/zingaya.js" name="Zingaya">
+        <clobbers target="zingaya" />
+    </js-module>
+    
+	<!-- Android -->
+	<platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Zingaya" >
+                <param name="android-package" value="plugins.zingaya.ZingayaPlugin"/>
+            </feature>
+        </config-file>
+		
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+			<uses-permission android:name="android.permission.RECORD_AUDIO" />
+			<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+			<uses-permission android:name="android.permission.BLUETOOTH" />
+		</config-file>
+		
+		<source-file src="src/android/libs/zingayasdk.jar" target-dir="libs" />
+		<source-file src="src/android/libs/armeabi" target-dir="libs" />
+		<source-file src="src/android/libs/armeabi-v7a" target-dir="libs" />
+		<source-file src="src/android/libs/x86" target-dir="libs" />
+		
+        <source-file src="src/android/ZingayaPlugin.java" target-dir="src/plugins/zingaya" />
+		
+    </platform>
+	
 	<!-- ios -->
 	<platform name="ios">
-		<config-file parent="/*" target="config.xml">
-			<feature name="zingaya_plugin">
-				<param name="ios-package" value="zingaya_plugin" />
-			</feature>
+        <config-file target="config.xml" parent="/*">
+            <feature name="Zingaya">
+                <param name="ios-package" value="ZingayaPlugin" />
+            </feature>
+        </config-file>
+        
+		<config-file target="*-Info.plist" parent="PRIVACY - MICROPHONE USAGE DESCRIPTION">
+				<string>Enable for IP Call</string>
 		</config-file>
-		<source-file src="src/ios/zingaya_plugin.m" />
-		<header-file src="src/ios/zingaya_plugin.h" />
-
+		
         <framework src="QuartzCore.framework" />
         <framework src="OpenGLES.framework" />
         <framework src="CFNetwork.framework" />
@@ -44,27 +64,9 @@
         <source-file src="src/ios/ZingayaSDKiOS_audio/lib/libilbc.a" framework="true"/>
         <source-file src="src/ios/ZingayaSDKiOS_audio/lib/libzingaya_audio.a" framework="true"/>
 
-	</platform>
-
-	<!-- Android -->
-	<platform name="android">
-		<config-file parent="/*" target="res/xml/config.xml">
-			<feature name="zingaya_plugin">
-				<param name="android-package" value="cordova-plugin-zingaya.zingaya_plugin" />
-			</feature>
-		</config-file>
-
-		<config-file target="AndroidManifest.xml" parent="/manifest">
-			<uses-permission android:name="android.permission.RECORD_AUDIO" />
-			<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-			<uses-permission android:name="android.permission.BLUETOOTH" />
-		</config-file>
-		<source-file src="src/android/libs/zingayasdk.jar" target-dir="libs" />
-		<source-file src="src/android/libs/armeabi" target-dir="libs" />
-		<source-file src="src/android/libs/armeabi-v7a" target-dir="libs" />
-		<source-file src="src/android/libs/x86" target-dir="libs" />
-
-		<source-file src="src/android/Zingaya_Plugin.java" target-dir="src/cordova-plugin-zingaya/zingaya_plugin" />
-	</platform>
+        <header-file src="src/ios/ZingayaPlugin.h" />
+        <source-file src="src/ios/ZingayaPlugin.m" />
+        
+    </platform>
 	
 </plugin>

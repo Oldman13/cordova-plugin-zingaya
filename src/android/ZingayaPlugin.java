@@ -1,4 +1,4 @@
-package cordova.plugin.zingaya;
+package plugins.zingaya;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,11 +19,11 @@ import com.zingaya.*;
 import com.zingaya.zingaya.*;
 
 /**
- * This class echoes a string called from JavaScript.
+ * Created by kuricina on 28.07.2015.
  */
-public class Zingaya_Plugin extends CordovaPlugin implements ZingayaAPICallback {
+public class ZingayaPlugin extends CordovaPlugin implements ZingayaAPICallback {
 
-    public static final String TAG = "Zingaya_Plugin";
+    public static final String TAG = "ZingayaPlugin";
     private CallbackContext callbackContext;
     private String action;
     private JSONArray args;
@@ -50,7 +50,7 @@ public class Zingaya_Plugin extends CordovaPlugin implements ZingayaAPICallback 
     /**
      * Constructor.
      */
-    public Zingaya_Plugin() {
+    public ZingayaPlugin() {
     }
 
     /**
@@ -108,7 +108,7 @@ public class Zingaya_Plugin extends CordovaPlugin implements ZingayaAPICallback 
                     call = null;
                     break;
             }
-            
+			
         } else if (action.equals("microphoneOn")) {
             ZingayaAPI.instance().unmute();
             callbackContext.success();
@@ -140,11 +140,9 @@ public class Zingaya_Plugin extends CordovaPlugin implements ZingayaAPICallback 
      */
 
     private void initZingayaSDK() {
-       try {
+        try {
             ZingayaAPI.instance().setAndroidContext(getApplicationContext());
         } catch (MissingPermissionException e) {
-            e.printStackTrace();
-        } catch (AudioDeviceException e) {
             e.printStackTrace();
         }
         ZingayaAPI.instance().setCallback(this);
@@ -162,7 +160,7 @@ public class Zingaya_Plugin extends CordovaPlugin implements ZingayaAPICallback 
                 logMessage("Connected to server. Calling...\n");
                 setState(State.Calling);
                 try {
-                    call = ZingayaAPI.instance().createCall("a775f92b4754224fa36df44123074253", false);
+                    call = ZingayaAPI.instance().createCall("7c71b5d9d57ff0eb776f2ed7c6e50799", false);
                     call.start(null);
                     call.attachMedia();
                 } catch (NotConnectedToServerException e) {
@@ -287,16 +285,16 @@ public class Zingaya_Plugin extends CordovaPlugin implements ZingayaAPICallback 
 
     }
 
-    private void setOKResult(String message) {
+	private void setOKResult(String message) {
         PluginResult result = new PluginResult(PluginResult.Status.OK, message);
         result.setKeepCallback(false);
-        Zingaya_Plugin.this.callbackContext.sendPluginResult(result);
+        ZingayaPlugin.this.callbackContext.sendPluginResult(result);
     }
-    
+	
     private void setErrorResult(String message) {
         PluginResult result = new PluginResult(PluginResult.Status.ERROR, message);
         result.setKeepCallback(false);
-        Zingaya_Plugin.this.callbackContext.sendPluginResult(result);
+        ZingayaPlugin.this.callbackContext.sendPluginResult(result);
     }
 
     private void logMessage(String message) {

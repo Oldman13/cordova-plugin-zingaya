@@ -1,9 +1,9 @@
 {
-  "name": "zingaya_plugin",
+  "name": "ZingayaPlugin",
   "version": "1.0.0",
   "description": "You can use the zingaya plugin to ...",
   "cordova": {
-    "id": "cordova-plugin-zingaya",
+    "id": "plugin.zingaya",
     "platforms": [
       "ios",
       "android"
